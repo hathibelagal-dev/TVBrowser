@@ -2,5 +2,10 @@
     <string name="app_name">Hathi Browser</string>
     <string name="status_complete">Ready</string>
     <string name="status_loading">Loading: </string>
-    <string name="browser_name">Hathi Browser Version 0.4</string>
+    <string name="browser_name">Hathi Browser Version 1.0</string>
+    <string name="refresh">Refresh</string>
+    <string name="back">Go back</string>
+    <string name="forward">Go Forward</string>
+    <string name="quit">Quit</string>
+    <string name="home">Home</string>
 </resources>
