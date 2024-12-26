@@ -2,5 +2,5 @@
     <string name="app_name">Hathi Browser</string>
     <string name="status_complete">Ready</string>
     <string name="status_loading">Loading: </string>
-    <string name="browser_name">Hathi Browser Version 0.3</string>
+    <string name="browser_name">Hathi Browser Version 0.4</string>
 </resources>

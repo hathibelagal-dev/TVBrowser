@@ -5,25 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/browser_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:text="@string/browser_name"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+    >
 
     <TextView
         android:id="@+id/browser_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:text="@string/status_complete"
-        android:layout_below="@id/browser_name"
-        android:paddingBottom="16dp"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textAlignment="textEnd"
         />
 
     <WebView
