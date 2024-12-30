@@ -88,20 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        CharSequence title = Objects.requireNonNull(item.getTitle());
-        if(title.equals(getResources().getText(R.string.home))) {
+        int id = item.getItemId();
+        if(id == R.id.browser_home) {
             browser.loadUrl(HOMEPAGE);
-        }
-        if(title.equals(getResources().getText(R.string.back))) {
+        } else if(id == R.id.browser_back) {
             browser.goBack();
-        }
-        if(title.equals(getResources().getText(R.string.forward))) {
+        } else if(id == R.id.browser_forward) {
             browser.goForward();
-        }
-        if(title.equals(getResources().getText(R.string.refresh))) {
+        } else if(id == R.id.browser_refresh) {
             browser.reload();
-        }
-        if(title.equals(getResources().getText(R.string.quit))) {
+        } else if(id == R.id.browser_quit) {
             MainActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
