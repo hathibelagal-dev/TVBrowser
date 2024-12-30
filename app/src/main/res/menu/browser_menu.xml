@@ -21,4 +21,8 @@
         android:id="@+id/browser_quit"
         android:title="@string/quit"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/browser_set_homepage"
+        android:title="@string/set_as_homepage"
+        app:showAsAction="never"/>
 </menu>

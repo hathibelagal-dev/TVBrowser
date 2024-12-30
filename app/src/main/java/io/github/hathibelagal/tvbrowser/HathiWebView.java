@@ -1,6 +1,7 @@
 package io.github.hathibelagal.tvbrowser;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.webkit.WebView;
@@ -10,7 +11,7 @@ import androidx.annotation.Nullable;
 
 public class HathiWebView extends WebView {
     public static final String HOMEPAGE = "https://hathibelagal-dev.github.io/tv/home.html";
-
+    private SharedPreferences prefs;
     public HathiWebView(@NonNull Context context) {
         super(context);
     }
@@ -24,7 +25,7 @@ public class HathiWebView extends WebView {
     }
 
     public void goHome() {
-        this.loadUrl(HOMEPAGE);
+        this.loadUrl(prefs.getString("PREFS_HOME", HOMEPAGE));
     }
 
     @Override
@@ -50,5 +51,9 @@ public class HathiWebView extends WebView {
             setAlpha(1f);
         }
         return super.dispatchKeyEvent(event);
+    }
+
+    public void setPreferences(SharedPreferences prefs) {
+        this.prefs = prefs;
     }
 }

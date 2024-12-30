@@ -8,4 +8,5 @@
     <string name="forward">Go Forward</string>
     <string name="quit">Quit</string>
     <string name="home">Home</string>
+    <string name="set_as_homepage">Set as Homepage</string>
 </resources>

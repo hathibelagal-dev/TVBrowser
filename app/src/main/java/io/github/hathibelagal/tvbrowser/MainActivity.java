@@ -1,6 +1,7 @@
 package io.github.hathibelagal.tvbrowser;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     HathiWebView browser;
     TextView status;
 
+    SharedPreferences prefs;
+
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         browser = findViewById(R.id.browser);
         status = findViewById(R.id.browser_status);
+
+        prefs = getPreferences(MODE_PRIVATE);
+        browser.setPreferences(prefs);
 
         WebSettings settings = browser.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -96,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
             browser.reload();
         } else if (id == R.id.browser_quit) {
             MainActivity.this.finish();
+        } else if(id == R.id.browser_set_homepage) {
+            String currentURL = browser.getUrl();
+            SharedPreferences.Editor prefsEditor = prefs.edit();
+            prefsEditor.putString("PREFS_HOME", currentURL);
+            prefsEditor.apply();
         }
         return super.onOptionsItemSelected(item);
     }
