@@ -7,13 +7,16 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     >
-    <WebView
+    <io.github.hathibelagal.tvbrowser.HathiWebView
         android:id="@+id/browser"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:focusedByDefault="true"
         >
-    </WebView>
+    </io.github.hathibelagal.tvbrowser.HathiWebView>
     <TextView
         android:id="@+id/browser_status"
         android:layout_width="match_parent"

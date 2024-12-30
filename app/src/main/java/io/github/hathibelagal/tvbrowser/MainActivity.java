@@ -1,12 +1,8 @@
 package io.github.hathibelagal.tvbrowser;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +14,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HOMEPAGE = "https://hathibelagal-dev.github.io/tv/home.html";
     private static final String UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0";
-    WebView browser;
+    HathiWebView browser;
     TextView status;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -48,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return false;
             }
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
@@ -71,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                if(newProgress == 100) return;
-                status.setText(getResources().getText(R.string.status_loading).toString()
+                if (newProgress == 100) return;
+                status.setText(getResources().getText(R.string.status_loading)
                         + " " + newProgress + "%");
             }
 
         });
-        browser.loadUrl(HOMEPAGE);
+        browser.goHome();
     }
 
     @Override
@@ -89,15 +86,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.browser_home) {
-            browser.loadUrl(HOMEPAGE);
-        } else if(id == R.id.browser_back) {
+        if (id == R.id.browser_home) {
+            browser.goHome();
+        } else if (id == R.id.browser_back) {
             browser.goBack();
-        } else if(id == R.id.browser_forward) {
+        } else if (id == R.id.browser_forward) {
             browser.goForward();
-        } else if(id == R.id.browser_refresh) {
+        } else if (id == R.id.browser_refresh) {
             browser.reload();
-        } else if(id == R.id.browser_quit) {
+        } else if (id == R.id.browser_quit) {
             MainActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
