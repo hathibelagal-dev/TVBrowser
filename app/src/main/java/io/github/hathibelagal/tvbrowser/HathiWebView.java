@@ -12,6 +12,16 @@ import androidx.annotation.Nullable;
 public class HathiWebView extends WebView {
     public static final String HOMEPAGE = "https://hathibelagal-dev.github.io/tv/home.html";
     private SharedPreferences prefs;
+    private int currentSearchEngine = 0;
+
+    public int getCurrentSearchEngine() {
+        return currentSearchEngine;
+    }
+
+    public void setCurrentSearchEngine(int currentSearchEngine) {
+        this.currentSearchEngine = currentSearchEngine;
+    }
+
     public HathiWebView(@NonNull Context context) {
         super(context);
     }

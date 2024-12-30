@@ -1,21 +1,27 @@
 package io.github.hathibelagal.tvbrowser;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,7 +113,49 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor prefsEditor = prefs.edit();
             prefsEditor.putString("PREFS_HOME", currentURL);
             prefsEditor.apply();
+        } else if(id == R.id.browser_search) {
+            showSearchDialog();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    void showSearchDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final View searchLayout = LayoutInflater.from(MainActivity.this).inflate(R.layout.search_dialog, null);
+        final EditText keywords = searchLayout.findViewById(R.id.search_keywords);
+
+        builder.setTitle("Query");
+
+        builder.setSingleChoiceItems(R.array.search_engine_items, browser.getCurrentSearchEngine(), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                browser.setCurrentSearchEngine(i);
+            }
+        });
+        builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(keywords.getText().length() > 0) {
+                    String query = keywords.getText().toString();
+                    String searchEngineBase = getResources().getString(R.string.google_query);;
+                    switch (browser.getCurrentSearchEngine()) {
+                        case 1: searchEngineBase = getResources().getString(R.string.ddg_query); break;
+                        case 2: searchEngineBase = getResources().getString(R.string.bing_query); break;
+                        case 3: searchEngineBase = getResources().getString(R.string.wiki_query); break;
+                    }
+                    browser.loadUrl(searchEngineBase + query);
+                }
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this, "Search cancelled.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setView(searchLayout);
+        builder.create().show();
     }
 }

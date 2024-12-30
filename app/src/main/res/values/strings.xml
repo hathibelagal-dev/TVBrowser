@@ -9,4 +9,11 @@
     <string name="quit">Quit</string>
     <string name="home">Home</string>
     <string name="set_as_homepage">Set as Homepage</string>
+    <string name="search">Search</string>
+    <string name="hint_search_keywords">Search keywords</string>
+
+    <string name="google_query">https://www.google.com/search?q=</string>
+    <string name="ddg_query">https://duckduckgo.com/?q=</string>
+    <string name="wiki_query">https://en.wikipedia.org/w/index.php?search=</string>
+    <string name="bing_query">https://www.bing.com/search?q=</string>
 </resources>
