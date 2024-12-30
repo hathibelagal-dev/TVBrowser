@@ -1,7 +1,21 @@
+/* Copyright 2024 Ashraff Hathibelagal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.github.hathibelagal.tvbrowser;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -9,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -43,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         prefs = getPreferences(MODE_PRIVATE);
         browser.setPreferences(prefs);
+
+        browser.setParentActivity(this);
 
         WebSettings settings = browser.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -108,12 +123,12 @@ public class MainActivity extends AppCompatActivity {
             browser.reload();
         } else if (id == R.id.browser_quit) {
             MainActivity.this.finish();
-        } else if(id == R.id.browser_set_homepage) {
+        } else if (id == R.id.browser_set_homepage) {
             String currentURL = browser.getUrl();
             SharedPreferences.Editor prefsEditor = prefs.edit();
             prefsEditor.putString("PREFS_HOME", currentURL);
             prefsEditor.apply();
-        } else if(id == R.id.browser_search) {
+        } else if (id == R.id.browser_search) {
             showSearchDialog();
         }
         return super.onOptionsItemSelected(item);
@@ -126,34 +141,27 @@ public class MainActivity extends AppCompatActivity {
 
         builder.setTitle("Query");
 
-        builder.setSingleChoiceItems(R.array.search_engine_items, browser.getCurrentSearchEngine(), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                browser.setCurrentSearchEngine(i);
-            }
-        });
-        builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if(keywords.getText().length() > 0) {
-                    String query = keywords.getText().toString();
-                    String searchEngineBase = getResources().getString(R.string.google_query);;
-                    switch (browser.getCurrentSearchEngine()) {
-                        case 1: searchEngineBase = getResources().getString(R.string.ddg_query); break;
-                        case 2: searchEngineBase = getResources().getString(R.string.bing_query); break;
-                        case 3: searchEngineBase = getResources().getString(R.string.wiki_query); break;
-                    }
-                    browser.loadUrl(searchEngineBase + query);
+        builder.setSingleChoiceItems(R.array.search_engine_items, browser.getCurrentSearchEngine(), (dialogInterface, i) -> browser.setCurrentSearchEngine(i));
+        builder.setPositiveButton("Search", (dialogInterface, i) -> {
+            if (keywords.getText().length() > 0) {
+                String query = keywords.getText().toString();
+                String searchEngineBase = getResources().getString(R.string.google_query);
+                switch (browser.getCurrentSearchEngine()) {
+                    case 1:
+                        searchEngineBase = getResources().getString(R.string.ddg_query);
+                        break;
+                    case 2:
+                        searchEngineBase = getResources().getString(R.string.bing_query);
+                        break;
+                    case 3:
+                        searchEngineBase = getResources().getString(R.string.wiki_query);
+                        break;
                 }
+                browser.loadUrl(searchEngineBase + query);
+            }
 
-            }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this, "Search cancelled.", Toast.LENGTH_SHORT).show();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> Toast.makeText(MainActivity.this, "Search cancelled.", Toast.LENGTH_SHORT).show());
 
         builder.setView(searchLayout);
         builder.create().show();
