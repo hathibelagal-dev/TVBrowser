@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TVBrowser"
         tools:targetApi="31"
-        android:banner="@drawable/twotone_cloud_48">
+        android:banner="@drawable/banner">
         <activity
             android:name=".MainActivity"
             android:exported="true">
