@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/browser_search"
-        android:title="@string/search"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/browser_home"
-        android:title="@string/home"
-        app:showAsAction="never"/>
+    <group android:id="@+id/browser_navigation_group">
+        <item
+            android:id="@+id/browser_home"
+            android:title="@string/home"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/browser_forward"
+            android:title="@string/forward"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/browser_search"
+            android:title="@string/search"
+            app:showAsAction="never"/>
+    </group>
     <item
         android:id="@+id/browser_back"
         android:title="@string/back"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/browser_forward"
-        android:title="@string/forward"
-        app:showAsAction="never"/>
+        android:icon="@drawable/baseline_arrow_back_24"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/browser_refresh"
         android:title="@string/refresh"
-        app:showAsAction="never"/>
+        android:icon="@drawable/baseline_refresh_24"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/browser_set_homepage"
         android:title="@string/set_as_homepage"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/browser_adblock_count"
+        android:title="@string/ads_blocked"
         app:showAsAction="never"/>
     <item
         android:id="@+id/browser_quit"

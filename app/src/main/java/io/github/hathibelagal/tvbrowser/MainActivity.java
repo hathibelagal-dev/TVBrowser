@@ -38,6 +38,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuCompat;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Nullable
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-                return AdBlocker.processRequest(MainActivity.this, request);
+                return AdBlocker.processRequest(MainActivity.this, request, prefs);
             }
 
             @Override
@@ -115,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.browser_menu, menu);
+        MenuCompat.setGroupDividerEnabled(menu, true);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -138,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
             prefsEditor.apply();
         } else if (id == R.id.browser_search) {
             showSearchDialog();
+        } else if (id == R.id.browser_adblock_count) {
+            Snackbar.make(browser, String.format(Locale.ENGLISH, getString(R.string.snack_number_of_ads_blocked),
+                    prefs.getInt("BLOCKED_COUNT", 0)), Snackbar.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }

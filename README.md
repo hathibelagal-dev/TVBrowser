@@ -9,3 +9,4 @@ This open-source browser is designed for Android TV, offering seamless compatibi
 - Quick navigation (several shortcuts available if you use a bluetooth keyboard)
 - Fully native, so it's fast and has a small footprint
 - Based on your Android TV's `WebView`
+- Blocks most common types of ads and trackers

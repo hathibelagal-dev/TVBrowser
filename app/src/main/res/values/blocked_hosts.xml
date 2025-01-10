@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="blocked">
+        <item>.ru</item>
+        <item>.cn</item>
         <item>pagead2.googleadservices.com</item>
         <item>partner.googleadservices.com</item>
         <item>partner46.googleadservices.com</item>
@@ -29,5 +31,7 @@
         <item>video-stats.video.google.com</item>
         <item>4.afs.googleadservices.com</item>
         <item>c.admob.com</item>
+        <item>adsbynimbus.com</item>
+        <item>agi-static.indiatimes.com</item>
     </string-array>
 </resources>
