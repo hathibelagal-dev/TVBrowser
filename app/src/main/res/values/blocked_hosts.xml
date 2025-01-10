@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="blocked">
+        <item>.pagead2.googleadservices.com</item>
+        <item>.partner.googleadservices.com</item>
+        <item>.partner46.googleadservices.com</item>
+        <item>.privacysandbox.googleadservices.com</item>
+        <item>.analytics.googleapis.com</item>
+        <item>.ads.youtube.com</item>
+    </string-array>
+</resources>
