@@ -7,5 +7,27 @@
         <item>.privacysandbox.googleadservices.com</item>
         <item>.analytics.googleapis.com</item>
         <item>.ads.youtube.com</item>
+        <item>.g.doubleclick.net</item>
+        <item>.g.doubleclick.net</item>
+        <item>.doubleadsclick.com</item>
+        <item>ad-assets.futurecdn.net</item>
+        <item>an.facebook.com</item>
+        <item>sonar-iad.xx.fbcdn.net</item>
+        <item>ssl.clickbank.net</item>
+        <item>ads.bing.com</item>
+        <item>ads.tiktok.com</item>
+        <item>ads.wikia.nocookie.net</item>
+        <item>adserver.cdnstream.com</item>
+        <item>a.tribalfusion.com</item>
+        <item>ls.srvcs.tumblr.com</item>
+        <item>ads.twitter.com</item>
+        <item>ad-assets.futurecdn.net</item>
+        <item>pagead-googlehosted.l.google.com</item>
+        <item>ad2.doubleclick.net</item>
+        <item>ad.in.doubleclick.net</item>
+        <item>ad.us.doubleclick.net</item>
+        <item>video-stats.video.google.com</item>
+        <item>4.afs.googleadservices.com</item>
+        <item>c.admob.com</item>
     </string-array>
 </resources>

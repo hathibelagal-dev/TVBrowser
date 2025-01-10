@@ -16,6 +16,7 @@
 package io.github.hathibelagal.tvbrowser;
 
 import android.content.Context;
+import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 
@@ -25,6 +26,8 @@ import java.io.ByteArrayInputStream;
 
 public class AdBlocker {
 
+    static String[] fastBlockHosts = null;
+
     @Nullable
     public static WebResourceResponse processRequest(Context context, WebResourceRequest request) {
         String hostname = request.getUrl().getHost();
@@ -32,7 +35,9 @@ public class AdBlocker {
             return null;
         }
         boolean valid = true;
-        String[] fastBlockHosts = context.getResources().getStringArray(R.array.blocked);
+        if(fastBlockHosts == null) {
+            fastBlockHosts = context.getResources().getStringArray(R.array.blocked);
+        }
         for(String host: fastBlockHosts) {
             if(hostname.endsWith(host)) {
                 valid = false;
